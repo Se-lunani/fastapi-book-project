@@ -25,7 +25,7 @@ db.books = {
     ),
     3: Book(
         id=3,
-        title="The Return of the King",
+        title="The Return of the Kings",
         author="J.R.R. Tolkien",
         publication_year=1955,
         genre=Genre.FANTASY,
@@ -70,3 +70,5 @@ async def update_book(book_id: int, book: Book) -> Book:
 async def delete_book(book_id: int) -> None:
     db.delete_book(book_id)
     return JSONResponse(status_code=status.HTTP_204_NO_CONTENT, content=None)
+
+# Newline added below this comment (empty line at end of file)
