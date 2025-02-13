@@ -32,9 +32,10 @@ db.books = {
     ),
 }
 
+
 @router.get("/{book_id}")  # The new endpoint
 async def get_book_by_id(book_id: int):
-    for book in db.books.values(): # Iterate over the values of the dictionary
+    for book in db.books.values():  #  Iterate over the values of the dictionary
         if book.id == book_id:
             return book
     raise HTTPException(status_code=404, detail="Book not founds")
@@ -67,3 +68,4 @@ async def update_book(book_id: int, book: Book) -> Book:
 async def delete_book(book_id: int) -> None:
     db.delete_book(book_id)
     return JSONResponse(status_code=status.HTTP_204_NO_CONTENT, content=None)
+
