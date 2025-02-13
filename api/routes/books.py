@@ -33,19 +33,21 @@ db.books = {
 }
 
 
-@router.get("/{book_id}")  # The new endpoint
+@router.get("/{book_id}")
 async def get_book_by_id(book_id: int):
-    for book in db.books.values():  #  Iterate over the values of the dictionary
+    # Iterate over the values of the dictionary
+    for book in db.books.values():
         if book.id == book_id:
             return book
-    raise HTTPException(status_code=404, detail="Book not founds")
+    raise HTTPException(status_code=404, detail="Book not found")
 
 
 @router.post("/", status_code=status.HTTP_201_CREATED)
 async def create_book(book: Book):
     db.add_book(book)
     return JSONResponse(
-        status_code=status.HTTP_201_CREATED, content=book.model_dump()
+        status_code=status.HTTP_201_CREATED,
+        content=book.model_dump()
     )
 
 
@@ -68,4 +70,3 @@ async def update_book(book_id: int, book: Book) -> Book:
 async def delete_book(book_id: int) -> None:
     db.delete_book(book_id)
     return JSONResponse(status_code=status.HTTP_204_NO_CONTENT, content=None)
-
