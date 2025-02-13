@@ -25,16 +25,18 @@ db.books = {
     ),
     3: Book(
         id=3,
-        title="The Return of the King",
+        title="The Return of the Kings",
         author="J.R.R. Tolkien",
         publication_year=1955,
         genre=Genre.FANTASY,
     ),
 }
 
-@router.get("/{book_id}")  # The new endpoint
+
+@router.get("/{book_id}")
 async def get_book_by_id(book_id: int):
-    for book in db.books.values(): # Iterate over the values of the dictionary
+    # Iterate over the values of the dictionary
+    for book in db.books.values():
         if book.id == book_id:
             return book
     raise HTTPException(status_code=404, detail="Book not found")
@@ -44,7 +46,8 @@ async def get_book_by_id(book_id: int):
 async def create_book(book: Book):
     db.add_book(book)
     return JSONResponse(
-        status_code=status.HTTP_201_CREATED, content=book.model_dump()
+        status_code=status.HTTP_201_CREATED,
+        content=book.model_dump()
     )
 
 
