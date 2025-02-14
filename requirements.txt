@@ -1,14 +1,14 @@
 # Core dependencies
-fastapi==0.115.8  # Updated to latest 0.115.x (compatible with Python 3.9+)
-uvicorn==0.34.0    # Matches FastAPI 0.115.x recommendations
-pydantic==2.10.6   # Required for pydantic-settings compatibility
-pydantic-settings==2.7.1  # Explicitly added to resolve ModuleNotFoundError
+fastapi==0.115.8
+uvicorn==0.34.0
+pydantic==2.10.6
+pydantic-settings==2.7.1
 python-dotenv==1.0.1
-httpx==0.28.1      # Aligned with FastAPI 0.115.x recommendations
+httpx==0.28.1
 
 # Security
 certifi==2024.6.2
-cryptography==42.0.8  # Works with Python 3.9 (your CI uses 3.9.21)
+cryptography==42.0.8
 PyNaCl==1.5.0
 
 # Linting/testing
@@ -22,5 +22,5 @@ PyGithub==2.5.0
 requests==2.32.3
 
 # Required implicit dependencies
-pydantic-core==2.27.2  # Required by pydantic v2
-typing-extensions==4.12.2  # Required by FastAPI/pydantic
+pydantic-core==2.27.2
+typing-extensions==4.12.2
