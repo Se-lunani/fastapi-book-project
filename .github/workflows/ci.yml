@@ -21,6 +21,10 @@ jobs:
       - name: Install Dependencies
         run: pip install -r requirements.txt
 
+      # New step: Compile Python files to catch syntax errors early.
+      - name: Compile Python Files
+        run: python -m compileall .
+
       - name: Run Tests
         run: pytest --timeout=30 --maxfail=1 --disable-warnings -v tests/
 
