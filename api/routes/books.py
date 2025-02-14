@@ -39,7 +39,7 @@ async def get_book_by_id(book_id: int):
     for book in db.books.values():
         if book.id == book_id:
             return book
-    raise HTTPException(status_code=404, detail="Books not found")
+    raise HTTPException(status_code=404, detail="Book not found")
 
 
 @router.post("/", status_code=status.HTTP_201_CREATED)

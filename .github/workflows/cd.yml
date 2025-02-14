@@ -9,28 +9,26 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      # -- Removed Render deploy step and its RENDER_DEPLOY_HOOK reference --
-
-      # Step 1: Checkout your code (unchanged)
+      # Step 1: Checkout your code
       - name: Checkout Code
         uses: actions/checkout@v2
 
-      # Step 2: Configure AWS Credentials (NEW: This replaces the Render deploy hook)
+      # Step 2: Configure AWS Credentials
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v2
         with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}       # Add this secret in GitHub
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}   # Add this secret in GitHub
-          aws-region: us-east-1                                        # Change to your AWS region if needed
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}       # Ensure this secret is added
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}   # Ensure this secret is added
+          aws-region: us-east-1                                        # Update region if necessary
 
-      # Step 3: Install the Elastic Beanstalk CLI (NEW)
+      # Step 3: Install the Elastic Beanstalk CLI
       - name: Install EB CLI
         run: pip install awsebcli
 
-      # Step 4: Deploy to Elastic Beanstalk (NEW: This replaces the Render deployment step)
+      # Step 4: Deploy to Elastic Beanstalk
       - name: Deploy to Elastic Beanstalk
         run: |
           # Initialize the EB CLI with your application name and platform (Docker)
-          eb init Fastapi-book-7 --platform docker --region us-east-1   # Replace "my-eb-app" with your EB application name
+          eb init Fastapi-book-7 --platform docker --region us-east-1
           # Deploy to your environment
-          eb deploy Fastapi-book-7                                        # Replace "my-eb-env" with your EB environment name
+          eb deploy Fastapi-book-7
